@@ -5,32 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ============================================================
-    PAGE TITLE — Update this to change the browser tab text
+    PAGE TITLE — Change to update the browser tab text
   ============================================================ -->
   <title>Bags of Hope | Bellaire High School</title>
 
-  <!-- Fonts: Playfair Display (editorial serif) + Jost (clean body) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Fonts: Cormorant Garamond (elegant serif) + Nunito (soft, friendly body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-      COLOR PALETTE — Edit these to retheme the whole site
-      --bg:      main dark background
-      --surface: slightly lighter panels
-      --accent:  warm gold highlight
+      COLOR PALETTE — Edit these to retheme the entire site
+      --bg:      main page background (warm cream)
+      --surface: card / panel background
+      --accent:  primary brand color (warm coral)
+      --green:   secondary soft sage accent
       --text:    main body text
       --muted:   softer secondary text
     ============================================================ */
     :root {
-      --bg:           #0d0d0d;
-      --surface:      #161616;
-      --surface2:     #1e1e1e;
-      --border:       rgba(255,255,255,0.08);
-      --accent:       #d4a853;
-      --accent-dim:   rgba(212,168,83,0.12);
-      --accent-hover: #c09640;
-      --text:         #f0ece4;
-      --muted:        rgba(240,236,228,0.5);
+      --bg:           #faf8f4;
+      --surface:      #f2ede5;
+      --surface2:     #ebe4d8;
+      --border:       rgba(60,40,20,0.10);
+      --accent:       #d4614a;
+      --accent-light: #fdf0ed;
+      --accent-hover: #bc4f3a;
+      --green:        #7aab88;
+      --green-light:  #eef5f0;
+      --text:         #2a2320;
+      --muted:        #7a6e68;
+      --white:        #ffffff;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,24 +43,14 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
       line-height: 1.7;
       overflow-x: hidden;
     }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
     a { text-decoration: none; color: inherit; }
-
-    /* Grain texture overlay on whole page */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 999;
-    }
 
     /* ── NAVIGATION ── */
     nav {
@@ -64,205 +58,211 @@
       z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px; height: 72px;
-      transition: background 0.4s, border-color 0.4s;
-      border-bottom: 1px solid transparent;
+      transition: background 0.4s, box-shadow 0.4s;
     }
 
     nav.scrolled {
-      background: rgba(13,13,13,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-color: var(--border);
+      background: rgba(250,248,244,0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 24px rgba(60,40,20,0.08);
     }
 
     /* ============================================================
-      LOGO — Swap for an <img> tag if you create a real logo
+      LOGO — SVG tote bag + heart mark, no text in the icon.
+      To swap for a real image file later:
+        <img src="logo.png" alt="Bags of Hope" height="38">
     ============================================================ */
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; font-weight: 700;
-      letter-spacing: 0.02em; color: var(--text);
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
     }
-    .nav-logo span { color: var(--accent); }
+    .logo-svg { width: 36px; height: 36px; flex-shrink: 0; }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--text); letter-spacing: 0.01em;
+    }
+    .logo-text span { color: var(--accent); }
 
     .nav-links {
       display: flex; align-items: center;
-      gap: 40px; list-style: none;
+      gap: 36px; list-style: none;
     }
     .nav-links a {
-      font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted); transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      border: 1px solid var(--accent) !important;
-      color: var(--accent) !important;
-      padding: 8px 22px; border-radius: 2px;
-      transition: background 0.2s !important;
+      background: var(--accent) !important;
+      color: var(--white) !important;
+      padding: 9px 24px;
+      border-radius: 100px !important;
+      transition: background 0.2s, transform 0.15s !important;
     }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
+    .nav-cta:hover { background: var(--accent-hover) !important; transform: translateY(-1px); }
 
     .hamburger {
       display: none; flex-direction: column;
-      gap: 6px; cursor: pointer;
-      background: none; border: none;
+      gap: 5px; cursor: pointer; background: none; border: none;
     }
     .hamburger span {
-      display: block; width: 26px; height: 1.5px;
-      background: var(--text); transition: all 0.3s;
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px; transition: all 0.3s;
     }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 56px 88px;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 100px 56px 80px;
       position: relative; overflow: hidden;
     }
 
-    .hero-bg { position: absolute; inset: 0; background: var(--bg); }
-
-    .hero-orb {
+    .hero-blob {
       position: absolute; border-radius: 50%;
-      filter: blur(120px); opacity: 0.18;
-      animation: drift 12s ease-in-out infinite alternate;
+      filter: blur(90px); pointer-events: none;
     }
-    .hero-orb-1 { width: 600px; height: 600px; background: var(--accent); top: -100px; right: -100px; }
-    .hero-orb-2 { width: 400px; height: 400px; background: #b06040; bottom: 0; left: -80px; animation-delay: -5s; }
+    .hero-blob-1 {
+      width: 500px; height: 500px; background: #f9d8d1;
+      top: -80px; right: -120px; opacity: 0.7;
+      animation: blobDrift 14s ease-in-out infinite alternate;
+    }
+    .hero-blob-2 {
+      width: 360px; height: 360px; background: #d5e8da;
+      bottom: 40px; left: -60px; opacity: 0.55;
+      animation: blobDrift 18s ease-in-out infinite alternate-reverse;
+    }
+    .hero-blob-3 {
+      width: 260px; height: 260px; background: #fde9c2;
+      top: 30%; left: 42%; opacity: 0.38;
+      animation: blobDrift 10s ease-in-out infinite alternate;
+    }
 
-    @keyframes drift {
+    @keyframes blobDrift {
       from { transform: translate(0,0) scale(1); }
-      to   { transform: translate(40px,30px) scale(1.08); }
+      to   { transform: translate(28px,18px) scale(1.06); }
     }
 
-    .hero-rule {
-      width: 48px; height: 1px;
-      background: var(--accent); margin-bottom: 28px;
+    .hero-inner { position: relative; z-index: 2; max-width: 740px; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 22px;
       opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
     }
-
-    .hero-inner { position: relative; z-index: 2; max-width: 820px; }
-
-    /* ============================================================
-      HERO EYEBROW — small label above the main headline
-    ============================================================ */
-    .eyebrow {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 24px;
-      opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+    .eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
     }
 
     /* ============================================================
-      HERO HEADLINE — the big text on the landing page
+      HERO HEADLINE — edit the text in the HTML below
     ============================================================ */
     #hero h1 {
-      font-size: clamp(3.2rem, 7vw, 6.5rem);
-      font-weight: 900; color: var(--text); margin-bottom: 28px;
-      opacity: 0; animation: fadeUp 0.9s ease forwards 0.55s;
+      font-size: clamp(3rem, 6.5vw, 5.8rem);
+      font-weight: 700; color: var(--text); margin-bottom: 26px;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.5s;
     }
     #hero h1 em { font-style: italic; color: var(--accent); }
 
     /* ============================================================
-      HERO SUBTEXT — paragraph under the headline
+      HERO SUBTEXT — edit the paragraph in the HTML below
     ============================================================ */
     .hero-sub {
-      font-size: 1.05rem; color: var(--muted);
-      max-width: 500px; margin-bottom: 44px;
-      opacity: 0; animation: fadeUp 0.9s ease forwards 0.7s;
+      font-size: 1.08rem; color: var(--muted);
+      max-width: 480px; margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.65s;
     }
 
     .btn-group {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.9s ease forwards 0.85s;
+      display: flex; gap: 14px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s ease forwards 0.8s;
     }
 
     .btn-primary {
-      background: var(--accent); color: var(--bg);
-      padding: 15px 36px; border-radius: 2px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--accent); color: var(--white);
+      padding: 15px 38px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
       transition: background 0.2s, transform 0.15s; display: inline-block;
     }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
     .btn-ghost {
-      border: 1px solid var(--border); color: var(--muted);
-      padding: 15px 36px; border-radius: 2px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
+      border: 2px solid var(--border); color: var(--muted);
+      padding: 13px 38px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
       transition: all 0.2s; display: inline-block;
     }
     .btn-ghost:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
 
-    .scroll-hint {
-      position: absolute; bottom: 32px; right: 56px;
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0; animation: fadeUp 1s ease forwards 1.1s;
-    }
-    .scroll-hint::before {
-      content: ''; display: block;
-      width: 40px; height: 1px; background: var(--muted);
+    /* Large watermark logo in hero background */
+    .hero-watermark {
+      position: absolute; right: 60px; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.05; z-index: 1; pointer-events: none;
     }
 
     /* ── SHARED SECTION STYLES ── */
-    section { padding: 112px 56px; }
+    section { padding: 104px 56px; }
 
     .section-label {
-      font-size: 0.7rem; font-weight: 500;
+      font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
+      color: var(--accent); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: ''; display: inline-block;
+      width: 22px; height: 2px;
+      background: var(--accent); border-radius: 2px;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--text); margin-bottom: 20px;
-    }
-
-    .section-sub {
-      font-size: 1rem; color: var(--muted);
-      max-width: 520px; line-height: 1.75;
-    }
-
-    .section-header { margin-bottom: 72px; }
+    .section-title { font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--text); margin-bottom: 18px; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 520px; line-height: 1.8; }
+    .section-header { margin-bottom: 64px; }
 
     /* ── WHAT WE DO ── */
-    #what-we-do { background: var(--surface); }
+    #what-we-do { background: var(--white); }
 
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
+      gap: 24px;
     }
 
     .card {
-      background: var(--surface); padding: 48px 36px;
-      transition: background 0.25s; position: relative;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 44px 32px;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden;
     }
-    .card::after {
+    .card::before {
       content: ''; position: absolute;
-      bottom: 0; left: 36px; right: 36px; height: 1px;
-      background: var(--accent);
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
       transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform 0.35s ease;
     }
-    .card:hover { background: var(--surface2); }
-    .card:hover::after { transform: scaleX(1); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(60,40,20,0.09); border-color: transparent; }
+    .card:hover::before { transform: scaleX(1); }
 
     .card-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem; font-weight: 900;
-      color: var(--accent-dim); line-height: 1; margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 700;
+      color: var(--accent); opacity: 0.18;
+      line-height: 1; margin-bottom: 18px;
     }
-    .card h3 { font-size: 1.2rem; color: var(--text); margin-bottom: 12px; }
-    .card p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+    .card h3 { font-size: 1.25rem; color: var(--text); margin-bottom: 10px; }
+    .card p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
 
     /* ── HOW IT WORKS ── */
     #how-it-works { background: var(--bg); }
@@ -270,257 +270,273 @@
     .steps-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 56px;
+      gap: 24px;
     }
 
-    .step-line {
-      width: 100%; height: 1px;
-      background: var(--border); margin-bottom: 32px;
-      position: relative;
+    .step {
+      padding: 36px 28px;
+      background: var(--white);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .step-line::before {
-      content: ''; position: absolute;
-      top: -3px; left: 0; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--accent);
-    }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(60,40,20,0.08); }
 
     .step-num {
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 12px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .step h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 10px; }
-    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .step-num::before {
+      content: ''; width: 20px; height: 2px;
+      background: var(--green); border-radius: 2px; display: inline-block;
+    }
+    .step h3 { font-size: 1.15rem; color: var(--text); margin-bottom: 10px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
 
     /* ── MISSION SPLIT ── */
-    #mission {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; padding: 0;
-    }
+    #mission { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
 
-    .mission-text { padding: 112px 72px 112px 56px; background: var(--surface); }
+    .mission-text { padding: 104px 72px 104px 56px; background: var(--surface); }
 
     .mission-visual {
-      background: var(--surface2); padding: 80px 56px;
-      border-left: 1px solid var(--border);
+      background: linear-gradient(145deg, #fde8e3 0%, #e8f2ea 100%);
+      padding: 80px 56px;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
     .mission-visual::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 60% 40%, rgba(212,168,83,0.08) 0%, transparent 65%);
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23d4614a' opacity='0.10'/%3E%3C/svg%3E") repeat;
     }
 
     /* ============================================================
-      PULL QUOTE — change the italic text in the HTML below
+      PULL QUOTE — change this italic text in the HTML below
     ============================================================ */
     .mission-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-style: italic; color: var(--text);
-      line-height: 1.4; position: relative; z-index: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 600; font-style: italic;
+      color: var(--text); line-height: 1.4;
+      position: relative; z-index: 1; text-align: center;
     }
     .mission-quote::before {
-      content: '\201C'; font-size: 5rem;
-      color: var(--accent); opacity: 0.4;
-      display: block; line-height: 0.6; margin-bottom: 20px;
+      content: '\201C'; font-size: 6rem;
+      color: var(--accent); opacity: 0.22;
+      display: block; line-height: 0.5;
+      margin-bottom: 24px; font-style: normal;
     }
-
     .mission-text .section-sub { margin-bottom: 20px; }
 
+    /* ── WRITE A LETTER ── */
+    #write-letter { background: var(--green-light); }
+
+    .letter-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 72px; align-items: center;
+    }
+
+    .letter-card-stack { position: relative; height: 280px; }
+
+    .letter-card {
+      position: absolute;
+      background: var(--white); border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(60,40,20,0.10);
+      padding: 28px 24px; width: 220px;
+    }
+    .letter-card-1 { top: 0; left: 0; transform: rotate(-4deg); border-top: 4px solid var(--green); }
+    .letter-card-2 { top: 40px; left: 60px; transform: rotate(2deg); border-top: 4px solid var(--accent); }
+
+    .letter-card-line { height: 10px; background: var(--surface2); border-radius: 4px; margin-bottom: 8px; }
+    .letter-card-line:last-child { width: 60%; }
+    .letter-card-heart { font-size: 1.4rem; margin-bottom: 10px; }
+
+    .letter-steps {
+      margin: 28px 0 36px;
+      list-style: none; display: flex; flex-direction: column; gap: 16px;
+    }
+    .letter-steps li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 0.93rem; color: var(--muted); line-height: 1.6;
+    }
+    .letter-step-num {
+      flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--green); color: var(--white);
+      font-size: 0.72rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px;
+    }
+
+    /* ============================================================
+      LETTER FORM BUTTON — replace href="#" with your Google Form URL
+      e.g. href="https://forms.gle/YourFormIdHere"
+    ============================================================ */
+    .btn-letter {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green); color: var(--white);
+      padding: 15px 36px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-letter:hover { background: #6a9878; transform: translateY(-2px); }
+    .letter-note { margin-top: 14px; font-size: 0.8rem; color: var(--muted); }
+
     /* ── IMPACT / STATS ── */
-    #impact { background: var(--bg); text-align: center; }
+    #impact { background: var(--accent); text-align: center; }
+
+    .impact-inner { max-width: 900px; margin: 0 auto; }
+    #impact .section-label { color: rgba(255,255,255,0.55); justify-content: center; }
+    #impact .section-label::before { background: rgba(255,255,255,0.4); }
+    #impact .section-title { color: var(--white); margin-bottom: 56px; }
 
     .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 16px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2px;
     }
 
     .stat-item {
-      background: var(--bg); padding: 60px 32px;
+      background: rgba(255,255,255,0.07); padding: 52px 28px; border-radius: 4px;
       transition: background 0.2s;
     }
-    .stat-item:hover { background: var(--surface); }
+    .stat-item:hover { background: rgba(255,255,255,0.14); }
 
     .stat-number {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 3.8rem; font-weight: 900;
-      color: var(--accent); line-height: 1; margin-bottom: 12px;
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 700; color: var(--white);
+      line-height: 1; margin-bottom: 10px;
     }
     .stat-label {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
     }
 
     /* ── DONATE ── */
-    #donate { background: var(--accent); padding: 96px 56px; }
+    #donate { background: var(--white); }
 
-    .donate-inner { max-width: 760px; margin: 0 auto; text-align: center; }
-    .donate-inner .section-label { color: rgba(13,13,13,0.45); }
-    .donate-inner .section-title { color: var(--bg); font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 20px; }
+    .donate-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .donate-inner .section-title { margin-bottom: 18px; }
     .donate-inner > p {
-      color: rgba(13,13,13,0.6); font-size: 1rem;
-      margin-bottom: 44px; max-width: 520px;
-      margin-left: auto; margin-right: auto;
+      font-size: 1rem; color: var(--muted); margin-bottom: 44px;
+      max-width: 500px; margin-left: auto; margin-right: auto;
     }
 
     /* ============================================================
       GOFUNDME BUTTON — replace href="#" with your live campaign URL
-      e.g. href="https://www.gofundme.com/f/your-campaign"
+      e.g. href="https://www.gofundme.com/f/your-campaign-name"
     ============================================================ */
     .gofundme-btn {
       display: inline-flex; align-items: center; gap: 12px;
-      background: var(--bg); color: var(--accent);
-      padding: 18px 48px; border-radius: 2px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.85rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: #02a95c; color: var(--white);
+      padding: 17px 48px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
     }
-    .gofundme-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(13,13,13,0.25); }
-
-    .gofundme-note { margin-top: 20px; font-size: 0.78rem; color: rgba(13,13,13,0.45); }
+    .gofundme-btn:hover { background: #029050; transform: translateY(-2px); }
+    .gofundme-note { margin-top: 18px; font-size: 0.8rem; color: var(--muted); }
 
     /* ── SOCIALS ── */
     #socials { background: var(--surface); text-align: center; }
 
     .socials-grid {
-      display: flex; justify-content: center;
-      gap: 16px; flex-wrap: wrap; margin-top: 52px;
+      display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 52px;
     }
 
     /* ============================================================
-      SOCIAL CARDS — replace href="#" with real profile URLs
-      Remove the "Coming Soon" span when the account goes live
+      SOCIAL CARDS — replace href="#" with your real profile URLs
+      Remove "Coming Soon" badge once account is live
+      Copy a .social-card block to add more platforms
     ============================================================ */
     .social-card {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
-      padding: 36px 44px; min-width: 150px;
-      border: 1px solid var(--border); background: var(--bg);
-      border-radius: 2px;
-      color: var(--muted); font-size: 0.78rem;
-      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: border-color 0.2s, transform 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 32px 40px; min-width: 145px;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; color: var(--muted);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .social-card:hover { border-color: var(--accent); transform: translateY(-4px); color: var(--text); }
-    .social-icon { font-size: 1.6rem; }
-    .social-coming {
-      font-size: 0.62rem; color: var(--accent);
-      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    .social-card:hover {
+      border-color: var(--accent); transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(212,97,74,0.12); color: var(--text);
     }
+    .social-icon { font-size: 1.7rem; }
+    .social-coming { font-size: 0.62rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 
     /* ── CONTACT ── */
     #contact { background: var(--bg); }
 
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      gap: 80px; align-items: start;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+    .contact-info .section-sub { margin-bottom: 40px; }
 
-    .contact-info .section-sub { margin-bottom: 48px; }
-
-    .contact-detail {
-      display: flex; gap: 16px;
-      margin-bottom: 28px; align-items: flex-start;
-    }
+    .contact-detail { display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
     .contact-detail-icon {
-      width: 36px; height: 36px; flex-shrink: 0;
-      border: 1px solid var(--border); border-radius: 2px;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent-light);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; margin-top: 2px;
+      font-size: 1.1rem; flex-shrink: 0;
     }
-    .contact-detail-body strong {
-      display: block; font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 4px;
-    }
-    .contact-detail-body p,
-    .contact-detail-body a { font-size: 0.92rem; color: var(--muted); transition: color 0.2s; }
-    .contact-detail-body a:hover { color: var(--text); }
+    .contact-detail-body strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .contact-detail-body p, .contact-detail-body a { font-size: 0.88rem; color: var(--muted); }
+    .contact-detail-body a:hover { color: var(--accent); }
 
-    /* Form */
-    .contact-form { display: flex; flex-direction: column; gap: 20px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group label {
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    .contact-form {
+      display: flex; flex-direction: column; gap: 18px;
+      background: var(--white); padding: 40px 36px;
+      border-radius: 20px; border: 1.5px solid var(--border);
     }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 2px; padding: 14px 18px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.9rem; color: var(--text);
-      outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem; color: var(--text);
+      background: var(--bg); transition: border-color 0.2s; outline: none;
     }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(240,236,228,0.2); }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus { border-color: var(--accent); }
-    .form-group select option { background: var(--surface2); }
-    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent); background: var(--white);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
 
     .form-submit {
       align-self: flex-start;
-      background: var(--accent); color: var(--bg); border: none;
-      padding: 15px 40px; border-radius: 2px;
-      font-family: 'Jost', sans-serif;
-      font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--accent); color: var(--white); border: none;
+      padding: 13px 36px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
       cursor: pointer; transition: background 0.2s, transform 0.15s;
     }
     .form-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
-
-    #form-success { font-size: 0.88rem; color: var(--accent); margin-top: 4px; }
+    #form-success { font-size: 0.88rem; color: var(--green); font-weight: 600; margin-top: 4px; }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 40px 56px;
+      background: var(--text); padding: 48px 56px;
       display: flex; align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap; gap: 16px;
+      justify-content: space-between; flex-wrap: wrap; gap: 20px;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700; color: var(--text);
-    }
-    .footer-logo span { color: var(--accent); }
-
-    /* ============================================================
-      FOOTER COPY — update year and add EIN once you have 501(c)(3)
-    ============================================================ */
-    .footer-copy { font-size: 0.78rem; color: var(--muted); }
-    .footer-tagline { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .footer-left { display: flex; align-items: center; gap: 12px; }
+    .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .footer-logo-text span { color: #f9a090; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+    .footer-tagline { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    .reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       #mission { grid-template-columns: 1fr; }
-      .mission-visual { border-left: none; border-top: 1px solid var(--border); }
+      .letter-inner { grid-template-columns: 1fr; gap: 40px; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     }
     @media (max-width: 768px) {
@@ -528,20 +544,20 @@
       .nav-links {
         display: none; flex-direction: column;
         position: absolute; top: 72px; left: 0; right: 0;
-        background: rgba(13,13,13,0.97);
-        backdrop-filter: blur(12px);
-        padding: 24px; gap: 20px;
-        border-bottom: 1px solid var(--border);
+        background: rgba(250,248,244,0.97); backdrop-filter: blur(12px);
+        padding: 24px 32px; gap: 18px;
+        box-shadow: 0 8px 32px rgba(60,40,20,0.10);
       }
       .nav-links.open { display: flex; }
       .hamburger { display: flex; }
       section { padding: 80px 24px; }
-      #hero { padding: 0 24px 72px; }
-      .scroll-hint { right: 24px; }
+      #hero { padding: 100px 24px 72px; }
       .form-row { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      footer { flex-direction: column; text-align: center; padding: 36px 24px; }
       .mission-text { padding: 72px 24px; }
       .mission-visual { padding: 56px 24px; }
+      .hero-watermark { display: none; }
+      .contact-form { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -549,10 +565,24 @@
 
   <!-- ============================================================
     NAVIGATION
-    Edit nav link labels and href="#section-id" targets as needed
+    Edit nav link labels and their href="#section-id" targets
+    The logo is a custom SVG — swap with <img src="logo.png"> later
   ============================================================ -->
   <nav id="navbar">
-    <div class="nav-logo">Bags <span>of Hope</span></div>
+
+    <!-- LOGO — SVG bag + heart, no text inside the icon -->
+    <a href="#hero" class="nav-logo">
+      <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bag body -->
+        <rect x="7" y="18" width="34" height="24" rx="4" fill="#d4614a" opacity="0.13"/>
+        <rect x="7" y="18" width="34" height="24" rx="4" stroke="#d4614a" stroke-width="2.2" fill="none"/>
+        <!-- Bag handles -->
+        <path d="M17 18 C17 11 31 11 31 18" stroke="#d4614a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <!-- Heart on bag -->
+        <path d="M24 35 C24 35 18 30.5 18 27.2 C18 25.4 19.4 24 21.2 24 C22.3 24 23.2 24.6 24 25.5 C24.8 24.6 25.7 24 26.8 24 C28.6 24 30 25.4 30 27.2 C30 30.5 24 35 24 35Z" fill="#d4614a"/>
+      </svg>
+      <span class="logo-text">Bags <span>of Hope</span></span>
+    </a>
 
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -561,8 +591,8 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#what-we-do">What We Do</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#write-letter">Write a Letter</a></li>
       <li><a href="#impact">Impact</a></li>
-      <li><a href="#socials">Follow Us</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#donate" class="nav-cta">Donate</a></li>
     </ul>
@@ -571,22 +601,32 @@
 
   <!-- ============================================================
     HERO SECTION
-    Edit the eyebrow, headline, and paragraph text below
+    Edit the eyebrow label, headline, and subtext below
   ============================================================ -->
   <section id="hero">
-    <div class="hero-bg">
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+
+    <!-- Large faint logo in the background -->
+    <div class="hero-watermark">
+      <svg width="400" height="400" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="7" y="18" width="34" height="24" rx="4" fill="#d4614a"/>
+        <path d="M17 18 C17 11 31 11 31 18" stroke="#d4614a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M24 35 C24 35 18 30.5 18 27.2 C18 25.4 19.4 24 21.2 24 C22.3 24 23.2 24.6 24 25.5 C24.8 24.6 25.7 24 26.8 24 C28.6 24 30 25.4 30 27.2 C30 30.5 24 35 24 35Z" fill="white"/>
+      </svg>
     </div>
 
     <div class="hero-inner">
-      <div class="hero-rule"></div>
-      <div class="eyebrow">Bellaire High School &nbsp;·&nbsp; Houston, TX</div>
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Bellaire High School &nbsp;·&nbsp; Houston, TX
+      </div>
 
-      <!-- MAIN HEADLINE -->
+      <!-- MAIN HEADLINE — change this text -->
       <h1>Small gestures,<br><em>big hope</em> for kids.</h1>
 
-      <!-- SUBTEXT -->
+      <!-- SUBTEXT — change this paragraph -->
       <p class="hero-sub">
         Bags of Hope is a student-led nonprofit club at Bellaire High School.
         We assemble goodie bags with toys, snacks, and comfort items —
@@ -598,23 +638,18 @@
         <a href="#what-we-do" class="btn-ghost">Learn More</a>
       </div>
     </div>
-
-    <div class="scroll-hint">Scroll to explore</div>
   </section>
 
 
   <!-- ============================================================
     WHAT WE DO SECTION
-    Edit, add, or remove cards to describe your work
+    Edit, add, or remove cards to describe your club's work
   ============================================================ -->
   <section id="what-we-do">
     <div class="section-header reveal">
       <div class="section-label">Our Mission</div>
       <h2 class="section-title">What We Do</h2>
-      <p class="section-sub">
-        We believe every child in a hospital deserves a moment of brightness.
-        Here's how Bags of Hope makes that happen.
-      </p>
+      <p class="section-sub">We believe every child in a hospital deserves a moment of brightness. Here's how Bags of Hope makes that happen.</p>
     </div>
 
     <div class="cards-grid">
@@ -631,7 +666,7 @@
       <div class="card reveal">
         <div class="card-num">03</div>
         <h3>We Fundraise</h3>
-        <p>Everything inside each bag is funded through donations from fellow students, families, and community supporters. Every dollar goes straight to the bags.</p>
+        <p>Everything inside each bag is funded through donations from fellow students, families, and community supporters. Every dollar goes to the bags.</p>
       </div>
       <div class="card reveal">
         <div class="card-num">04</div>
@@ -644,7 +679,7 @@
 
   <!-- ============================================================
     HOW IT WORKS SECTION
-    Edit the step titles and descriptions as your process evolves
+    Edit step titles and descriptions as your process evolves
   ============================================================ -->
   <section id="how-it-works">
     <div class="section-header reveal">
@@ -655,25 +690,21 @@
 
     <div class="steps-row">
       <div class="step reveal">
-        <div class="step-line"></div>
         <div class="step-num">Step 01</div>
         <h3>Donations Come In</h3>
         <p>Students and supporters donate through our GoFundMe page or at school fundraising events.</p>
       </div>
       <div class="step reveal">
-        <div class="step-line"></div>
         <div class="step-num">Step 02</div>
         <h3>We Shop &amp; Gather</h3>
         <p>Club officers use funds to purchase approved items — toys, snacks, stuffed animals, and more.</p>
       </div>
       <div class="step reveal">
-        <div class="step-line"></div>
         <div class="step-num">Step 03</div>
         <h3>Members Assemble</h3>
-        <p>At club meetings, members pack each bag by hand and add a personal handwritten card.</p>
+        <p>At club meetings, members pack each bag by hand and add a personal handwritten card inside.</p>
       </div>
       <div class="step reveal">
-        <div class="step-line"></div>
         <div class="step-num">Step 04</div>
         <h3>Bags Are Delivered</h3>
         <p>We coordinate with the hospital's Child Life team and deliver bags directly to children in need.</p>
@@ -690,19 +721,12 @@
     <div class="mission-text reveal">
       <div class="section-label">Why We Do It</div>
       <h2 class="section-title">Crafting Smiles<br>Through Kindness</h2>
-      <p class="section-sub">
-        Hospital stays can be incredibly isolating for children. While medical teams
-        focus on physical health, we believe emotional comfort is just as vital.
-      </p>
-      <p class="section-sub" style="margin-top:16px;">
-        Our student-led initiative brings together volunteers to assemble care bags
-        filled with toys, creative activities, and handwritten notes — ensuring no
-        child feels scared or alone during their recovery.
-      </p>
+      <p class="section-sub">Hospital stays can be incredibly isolating for children. While medical teams focus on physical health, we believe emotional comfort is just as vital.</p>
+      <p class="section-sub" style="margin-top:16px;">Our student-led initiative brings together volunteers to assemble care bags filled with toys, creative activities, and handwritten notes — ensuring no child feels scared or alone during their recovery.</p>
     </div>
 
     <div class="mission-visual reveal">
-      <!-- PULL QUOTE — change this text to any line you'd like -->
+      <!-- PULL QUOTE — change this line to any quote you'd like -->
       <div class="mission-quote">
         No child should feel alone while they heal.
       </div>
@@ -711,33 +735,105 @@
 
 
   <!-- ============================================================
+    WRITE A LETTER SECTION
+    Replace href="#" on the button with your Google Form URL
+    e.g. href="https://forms.gle/YourFormIdHere"
+    Update the numbered steps to match your real approval process
+    Update the letter-note with your real review timeline
+  ============================================================ -->
+  <section id="write-letter">
+    <div class="letter-inner">
+
+      <!-- Decorative stacked letter cards (purely visual) -->
+      <div class="letter-visual reveal">
+        <div class="letter-card-stack">
+          <div class="letter-card letter-card-1">
+            <div class="letter-card-heart">💛</div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+          </div>
+          <div class="letter-card letter-card-2">
+            <div class="letter-card-heart">🌟</div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+            <div class="letter-card-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="section-label">Write a Letter</div>
+        <h2 class="section-title">Send a Note<br>of Encouragement</h2>
+        <p class="section-sub">
+          Can't make it to a packing session? You can still brighten a child's
+          day by writing them a heartfelt note. All letters are reviewed and
+          approved before being placed inside a bag.
+        </p>
+
+        <!-- HOW THE LETTER PROCESS WORKS — edit steps as needed -->
+        <ul class="letter-steps">
+          <li>
+            <div class="letter-step-num">1</div>
+            <span>Fill out the Google Form with your name and a short uplifting note for a child.</span>
+          </li>
+          <li>
+            <div class="letter-step-num">2</div>
+            <span>Our club officers review each letter to make sure it's age-appropriate and encouraging.</span>
+          </li>
+          <li>
+            <div class="letter-step-num">3</div>
+            <span>Approved letters are printed and tucked inside a goodie bag heading to the hospital.</span>
+          </li>
+        </ul>
+
+        <!-- REPLACE href="#" WITH YOUR GOOGLE FORM URL -->
+        <a href="#" target="_blank" class="btn-letter">
+          ✏️ &nbsp; Open the Letter Form
+        </a>
+
+        <!-- UPDATE this note with your real review timeline -->
+        <p class="letter-note">
+          Letters are reviewed within 3–5 school days. Thank you for spreading hope! 💛
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
     IMPACT / STATS SECTION
-    Change data-target="0" to real numbers when you have them
-    e.g. data-target="42" — the JS will animate the count up
-    Edit the stat-label text directly below
+    Change data-target="0" to your real numbers when you have them
+    e.g. data-target="42" — JavaScript animates the count-up
+    Edit stat-label text directly below
   ============================================================ -->
   <section id="impact">
-    <div class="section-header reveal">
-      <div class="section-label">Our Impact</div>
-      <h2 class="section-title">Numbers That Matter</h2>
-    </div>
+    <div class="impact-inner">
+      <div class="section-header reveal">
+        <div class="section-label">Our Impact</div>
+        <h2 class="section-title">Numbers That Matter</h2>
+      </div>
 
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="0">0</span>
-        <div class="stat-label">Bags Delivered</div>
-      </div>
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="0">0</span>
-        <div class="stat-label">Club Members</div>
-      </div>
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="0">0</span>
-        <div class="stat-label">Dollars Raised</div>
-      </div>
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="1">0</span>
-        <div class="stat-label">Hospital Partner</div>
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="0">0</span>
+          <div class="stat-label">Bags Delivered</div>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="0">0</span>
+          <div class="stat-label">Club Members</div>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="0">0</span>
+          <div class="stat-label">Dollars Raised</div>
+        </div>
+        <div class="stat-item reveal">
+          <span class="stat-number" data-target="1">0</span>
+          <div class="stat-label">Hospital Partner</div>
+        </div>
       </div>
     </div>
   </section>
@@ -745,8 +841,8 @@
 
   <!-- ============================================================
     DONATE SECTION
-    Replace href="#" with your live GoFundMe URL once it's created
-    Update the paragraph text with campaign-specific details
+    Replace href="#" with your live GoFundMe URL
+    e.g. href="https://www.gofundme.com/f/your-campaign-name"
   ============================================================ -->
   <section id="donate">
     <div class="donate-inner reveal">
@@ -754,8 +850,8 @@
       <h2 class="section-title">Help Us Fill More Bags</h2>
       <p>
         Your donation directly funds every item inside our goodie bags.
-        Even a small gift makes a real difference for a child spending time
-        in the hospital. All donations are processed securely through GoFundMe.
+        Even a small gift makes a real difference for a child in the hospital.
+        All donations are processed securely through GoFundMe.
       </p>
 
       <!-- REPLACE href="#" WITH YOUR GOFUNDME URL -->
@@ -766,27 +862,26 @@
         Donate on GoFundMe
       </a>
 
-      <p class="gofundme-note">100% of donations go toward bag supplies.</p>
+      <p class="gofundme-note">🔒 100% of donations go toward bag supplies.</p>
     </div>
   </section>
 
 
   <!-- ============================================================
     SOCIALS SECTION
-    Replace href="#" with each platform's real URL when ready
-    Remove the "Coming Soon" span once the account is live
-    Copy a social-card block to add more platforms
+    Replace href="#" with your real profile URLs when accounts are live
+    Remove the "Coming Soon" badge once each account is active
+    Copy a .social-card block to add more platforms
   ============================================================ -->
   <section id="socials">
-    <div style="max-width:600px; margin:0 auto;">
-      <div class="section-label reveal">Stay Connected</div>
+    <div style="max-width:600px; margin:0 auto; text-align:center;">
+      <div class="section-label reveal" style="justify-content:center;">Stay Connected</div>
       <h2 class="section-title reveal">Follow Our Journey</h2>
       <p class="section-sub reveal" style="margin:0 auto;">
         Follow along as we pack bags, raise funds, and deliver smiles.
         Our social pages will be live soon.
       </p>
     </div>
-
     <div class="socials-grid">
       <!-- INSTAGRAM — replace href="#" -->
       <a href="#" target="_blank" class="social-card reveal">
@@ -800,15 +895,15 @@
         <div>TikTok</div>
         <div class="social-coming">Coming Soon</div>
       </a>
-      <!-- ADD MORE PLATFORMS: copy the block above and change icon + label -->
     </div>
   </section>
 
 
   <!-- ============================================================
     CONTACT SECTION
-    Update email, school address, and hospital info below
-    To make the form send real emails: see script.js Section 5
+    Email: s2186709@online.houstonisd.org
+    To connect the form to real email delivery, see script.js Section 5
+    Update the hospital name once your partnership is confirmed
   ============================================================ -->
   <section id="contact">
     <div class="contact-grid">
@@ -816,9 +911,7 @@
       <div class="contact-info reveal">
         <div class="section-label">Get In Touch</div>
         <h2 class="section-title">Contact Us</h2>
-        <p class="section-sub">
-          Questions? Want to get involved? Reach out and we'll get back to you.
-        </p>
+        <p class="section-sub">Questions? Want to get involved? Reach out and we'll get back to you.</p>
 
         <!-- SCHOOL ADDRESS — update if it ever changes -->
         <div class="contact-detail">
@@ -829,16 +922,16 @@
           </div>
         </div>
 
-        <!-- REPLACE with your real club email address -->
+        <!-- CONTACT EMAIL — update if it changes -->
         <div class="contact-detail">
           <div class="contact-detail-icon">✉️</div>
           <div class="contact-detail-body">
             <strong>Email</strong>
-            <a href="mailto:bagsofhope@bellairehighschool.org">bagsofhope@bellairehighschool.org</a>
+            <a href="mailto:s2186709@online.houstonisd.org">s2186709@online.houstonisd.org</a>
           </div>
         </div>
 
-        <!-- UPDATE hospital name once your partnership is confirmed -->
+        <!-- UPDATE hospital name once confirmed -->
         <div class="contact-detail">
           <div class="contact-detail-icon">🏥</div>
           <div class="contact-detail-body">
@@ -850,7 +943,6 @@
 
       <div class="reveal">
         <form class="contact-form" id="contact-form">
-
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
@@ -870,6 +962,7 @@
               <option value="donate">Donating Supplies</option>
               <option value="join">Joining the Club</option>
               <option value="hospital">Hospital Partnership</option>
+              <option value="letters">Letters Program</option>
               <option value="press">Media / Press</option>
             </select>
           </div>
@@ -882,9 +975,8 @@
           <button type="submit" class="form-submit">Send Message</button>
 
           <div id="form-success" style="display:none;">
-            ✦ Message sent — we'll be in touch soon.
+            ✦ Message sent — we'll be in touch soon!
           </div>
-
         </form>
       </div>
 
@@ -893,16 +985,27 @@
 
 
   <!-- ============================================================
-    FOOTER — Update year and add EIN once you get 501(c)(3) status
+    FOOTER
+    Update the year each January
+    Add your EIN once you receive 501(c)(3) status
   ============================================================ -->
   <footer>
-    <div class="footer-logo">Bags <span>of Hope</span></div>
+    <div class="footer-left">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="7" y="18" width="34" height="24" rx="4" fill="white" opacity="0.12"/>
+        <rect x="7" y="18" width="34" height="24" rx="4" stroke="white" stroke-width="2" fill="none"/>
+        <path d="M17 18 C17 11 31 11 31 18" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M24 35 C24 35 18 30.5 18 27.2 C18 25.4 19.4 24 21.2 24 C22.3 24 23.2 24.6 24 25.5 C24.8 24.6 25.7 24 26.8 24 C28.6 24 30 25.4 30 27.2 C30 30.5 24 35 24 35Z" fill="#f9a090"/>
+      </svg>
+      <span class="footer-logo-text">Bags <span>of Hope</span></span>
+    </div>
+
     <div class="footer-copy">
       &copy; <span id="footer-year"></span> Bags of Hope &mdash; Bellaire High School, Houston TX
     </div>
-    <div class="footer-tagline">Delivering Joy</div>
-  </footer>
 
+    <div class="footer-tagline">Delivering Joy, One Bag at a Time</div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
