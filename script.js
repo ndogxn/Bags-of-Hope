@@ -1,12 +1,12 @@
 /* =============================================================
    BAGS OF HOPE — script.js
    This file handles all the interactive behavior on the site.
-   Each section is labeled so you know what it controls.
+   Each section is clearly labeled so you know what it controls.
 ============================================================= */
 
 
-/* ── 1. NAVBAR: Adds frosted blur background when you scroll ──
-   No changes needed here unless you rename the nav's id.
+/* ── 1. NAVBAR: Adds frosted background when you scroll down ──
+   No changes needed unless you rename the nav's id in HTML.
 ──────────────────────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
 
@@ -58,13 +58,13 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
 /* ── 4. ANIMATED STAT COUNTERS ───────────────────────────────
-   The numbers in the Impact section count up when they scroll
-   into view. They read from the data-target attribute in HTML.
+   Numbers in the Impact section count up when scrolled into view.
+   They read from the data-target attribute set in the HTML.
 
    TO UPDATE A NUMBER:
    Go to index.html, find the <span class="stat-number"> for that
-   stat and change data-target="0" to your real number.
-   e.g. data-target="42" — you don't need to touch this JS.
+   stat, and change data-target="0" to your real number.
+   e.g. data-target="42"  — you don't need to touch this JS.
 ──────────────────────────────────────────────────────────── */
 function animateCounter(el) {
   const target   = parseInt(el.getAttribute('data-target'), 10);
@@ -74,7 +74,7 @@ function animateCounter(el) {
   function update(now) {
     const elapsed  = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    // Ease-out: starts fast, slows to a stop
+    // Ease-out: starts fast, decelerates to a stop
     const eased    = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.floor(eased * target).toLocaleString();
     if (progress < 1) requestAnimationFrame(update);
@@ -108,18 +108,18 @@ document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(
    3. In index.html, find <form id="contact-form"> and add:
          action="https://formspree.io/f/XXXXXXXX"  method="POST"
    4. Delete the line below that says  e.preventDefault()
-      so the form submits normally instead of being intercepted
+      so the form submits normally to Formspree instead
 ──────────────────────────────────────────────────────────── */
 const contactForm = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // ← DELETE this line once Formspree is set up
+    e.preventDefault(); // ← DELETE this line once Formspree is connected
     formSuccess.style.display = 'block';
     contactForm.reset();
 
-    // Hides the success message after 5 seconds
+    // Hide the success message after 5 seconds
     setTimeout(() => {
       formSuccess.style.display = 'none';
     }, 5000);
@@ -135,7 +135,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
 /* ── 7. ACTIVE NAV HIGHLIGHT: Highlights current section ─────
-   As you scroll, the matching nav link lights up in gold.
+   As you scroll, the matching nav link gets the accent color.
    No changes needed here.
 ──────────────────────────────────────────────────────────── */
 const sections   = document.querySelectorAll('section[id]');
