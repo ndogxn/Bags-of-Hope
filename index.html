@@ -116,11 +116,10 @@
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
       align-items: center;
       padding: 100px 56px 80px;
       position: relative; overflow: hidden;
-      gap: 60px;
     }
 
     .hero-blob {
@@ -150,73 +149,31 @@
 
     .hero-inner { position: relative; z-index: 2; }
 
-    /* Right side visual panel in hero */
+    /* ── HERO RIGHT PANEL ── */
     .hero-visual {
       position: relative; z-index: 2;
       display: flex; align-items: center; justify-content: center;
     }
-
-    .hero-card-cluster {
-      position: relative; width: 340px; height: 420px;
-    }
-
+    .hero-card-cluster { position: relative; width: 340px; height: 420px; }
     .hero-card {
-      position: absolute;
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 16px 48px rgba(60,40,20,0.10);
-      padding: 28px;
-      opacity: 0;
-      animation: fadeUp 0.9s ease forwards;
+      position: absolute; background: var(--white);
+      border-radius: 20px; box-shadow: 0 16px 48px rgba(60,40,20,0.10);
+      padding: 28px; opacity: 0; animation: fadeUp 0.9s ease forwards;
     }
-
-    .hero-card-main {
-      width: 280px; top: 0; left: 20px;
-      animation-delay: 0.9s;
-      border-top: 4px solid var(--accent);
-    }
-    .hero-card-stat {
-      width: 160px; bottom: 20px; right: 0;
-      animation-delay: 1.1s;
-      border-top: 4px solid var(--green);
-      text-align: center;
-    }
-    .hero-card-tag {
-      width: 150px; bottom: 100px; left: 0;
-      animation-delay: 1.25s;
-      padding: 16px 20px;
-    }
-
-    .hero-card-label {
-      font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 10px;
-    }
-
+    .hero-card-main  { width: 280px; top: 0; left: 20px; animation-delay: 0.9s; border-top: 4px solid var(--accent); }
+    .hero-card-stat  { width: 160px; bottom: 20px; right: 0; animation-delay: 1.1s; border-top: 4px solid var(--green); text-align: center; }
+    .hero-card-tag   { width: 150px; bottom: 100px; left: 0; animation-delay: 1.25s; padding: 16px 20px; }
+    .hero-card-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
     .hero-card-bag-icon { font-size: 2.2rem; margin-bottom: 10px; }
-
-    .hero-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 700; color: var(--text);
-      margin-bottom: 6px; line-height: 1.3;
-    }
-    .hero-card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-    .hero-card-big-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem; font-weight: 700; color: var(--accent);
-      line-height: 1; display: block; margin-bottom: 4px;
-    }
+    .hero-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
+    .hero-card-desc  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .hero-card-big-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 700; color: var(--accent); line-height: 1; display: block; margin-bottom: 4px; }
     .hero-card-small-label { font-size: 0.68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .hero-card-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; color: var(--green); }
+    .hero-card-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
-    .hero-card-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.75rem; font-weight: 700; color: var(--green);
-    }
-    .hero-card-pill::before {
-      content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--green); flex-shrink: 0;
-    }
+    /* Hidden — no longer used */
+    .hero-watermark { display: none; }
 
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -274,8 +231,12 @@
     }
     .btn-ghost:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
 
-    /* Large watermark logo in hero background — kept for mobile fallback */
-    .hero-watermark { display: none; }
+    /* Large watermark logo in hero background */
+    .hero-watermark {
+      position: absolute; right: 60px; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.05; z-index: 1; pointer-events: none;
+    }
 
     /* ── SHARED SECTION STYLES ── */
     section { padding: 104px 56px; }
@@ -535,21 +496,15 @@
     /* ── CONTACT ── */
     #contact { background: var(--bg); }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items: start; margin-top: 0; }
-    .contact-info-header { margin-bottom: 48px; }
-    .contact-info-header .section-sub { margin-bottom: 0; }
+    .contact-info-header { margin-bottom: 52px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: start; }
 
     .contact-detail {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 32px 28px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .contact-detail:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(60,40,20,0.08);
-    }
+    .contact-detail:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(60,40,20,0.08); }
     .contact-detail-icon {
       width: 48px; height: 48px; border-radius: 12px;
       background: var(--accent-light);
@@ -604,7 +559,6 @@
       footer { flex-direction: column; text-align: center; padding: 36px 24px; }
       .mission-text { padding: 72px 24px; }
       .mission-visual { padding: 56px 24px; }
-      .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -677,11 +631,10 @@
       </div>
     </div>
 
-    <!-- RIGHT SIDE — decorative info cards -->
+    <!-- RIGHT SIDE — decorative info cards (hidden on mobile) -->
     <div class="hero-visual">
       <div class="hero-card-cluster">
 
-        <!-- Main card -->
         <div class="hero-card hero-card-main">
           <div class="hero-card-label">Our Mission</div>
           <div class="hero-card-bag-icon">🎒</div>
@@ -689,19 +642,18 @@
           <div class="hero-card-desc">Hand-packed with toys, snacks, stuffed animals, and handwritten notes of hope.</div>
         </div>
 
-        <!-- Stat card -->
         <div class="hero-card hero-card-stat">
           <span class="hero-card-big-num">TMC</span>
           <div class="hero-card-small-label">Houston, Texas</div>
         </div>
 
-        <!-- Tag card -->
         <div class="hero-card hero-card-tag">
           <div class="hero-card-pill">Student-Led Club</div>
         </div>
 
-      </div><!-- end .hero-card-cluster -->
-    </div><!-- end .hero-visual -->
+      </div>
+    </div>
+
   </section>
 
 
@@ -964,11 +916,11 @@
 
 
   <!-- ============================================================
-    CONTACT SECTION
-    Email: ndogan4821@gmail.com
-    Update the hospital name once your partnership is confirmed
+    CONTACT SECTION — Email: ndogan4821@gmail.com
+    Update hospital name once your partnership is confirmed
   ============================================================ -->
   <section id="contact">
+
     <div class="contact-info-header reveal">
       <div class="section-label">Get In Touch</div>
       <h2 class="section-title">Contact Us</h2>
@@ -991,7 +943,7 @@
         <div class="contact-detail-icon">✉️</div>
         <div class="contact-detail-body">
           <strong>Email Us</strong>
-          <a href="/cdn-cgi/l/email-protection#640a000b03050a505c5655240309050d084a070b09"><span class="__cf_email__" data-cfemail="36585259515758020e040776515b575f5a1855595b">[email&#160;protected]</span></a>
+          <a href="mailto:ndogan4821@gmail.com">ndogan4821@gmail.com</a>
         </div>
       </div>
 
@@ -1021,4 +973,8 @@
         <path d="M17 18 C17 11 31 11 31 18" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
         <path d="M24 35 C24 35 18 30.5 18 27.2 C18 25.4 19.4 24 21.2 24 C22.3 24 23.2 24.6 24 25.5 C24.8 24.6 25.7 24 26.8 24 C28.6 24 30 25.4 30 27.2 C30 30.5 24 35 24 35Z" fill="#f9a090"/>
       </svg>
-      <span class="footer-logo-text">Bags <span>of Hope</span></s
+      <span class="footer-logo-text">Bags <span>of Hope</span></span>
+    </div>
+
+    <div class="footer-copy">
+      &copy; <span id="footer-year"></span> Bags of Hope &mdash; Bellaire High School, Hou
