@@ -98,7 +98,36 @@ const counterObserver = new IntersectionObserver(
 document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
 
 
-/* ── 5. FOOTER YEAR: Keeps the copyright year up to date ─────
+/* ── 5. CONTACT FORM: Shows a success message on submit ──────
+   Right now this only shows an on-screen confirmation.
+   It does NOT send a real email yet.
+
+   TO MAKE IT SEND REAL EMAILS (free, no coding required):
+   1. Go to https://formspree.io — create a free account
+   2. Create a new form and copy the URL it gives you
+   3. In index.html, find <form id="contact-form"> and add:
+         action="https://formspree.io/f/XXXXXXXX"  method="POST"
+   4. Delete the line below that says  e.preventDefault()
+      so the form submits normally to Formspree instead
+──────────────────────────────────────────────────────────── */
+const contactForm = document.getElementById('contact-form');
+const formSuccess = document.getElementById('form-success');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // ← DELETE this line once Formspree is connected
+    formSuccess.style.display = 'block';
+    contactForm.reset();
+
+    // Hide the success message after 5 seconds
+    setTimeout(() => {
+      formSuccess.style.display = 'none';
+    }, 5000);
+  });
+}
+
+
+/* ── 6. FOOTER YEAR: Keeps the copyright year up to date ─────
    No changes needed — this auto-updates every year.
 ──────────────────────────────────────────────────────────── */
 const yearEl = document.getElementById('footer-year');
