@@ -30,7 +30,7 @@ const WriteALetter = () => {
           ))}
         </div>
         <Button size="lg" asChild>
-          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://forms.gle/qh7VnTgiirpoJXkUA" target="_blank" rel="noopener noreferrer">
             Open the Letter Form
           </a>
         </Button>
