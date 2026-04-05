@@ -2,10 +2,10 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Bags Delivered", bg: "bg-primary" },
-  { value: 40, suffix: "+", label: "Club Members", bg: "bg-sky" },
-  { value: 3000, suffix: "+", prefix: "$", label: "Dollars Raised", bg: "bg-secondary" },
-  { value: 4, suffix: "", label: "Hospital Partners", bg: "bg-rose" },
+  { value: 0, suffix: "", label: "Bags Delivered", bg: "bg-primary" },
+  { value: 0, suffix: "", label: "Club Members", bg: "bg-sky" },
+  { value: 0, suffix: "", prefix: "$", label: "Dollars Raised", bg: "bg-secondary" },
+  { value: 0, suffix: "", label: "Hospital Partners", bg: "bg-rose" },
 ];
 
 const StatItem = ({ value, suffix, prefix, label, start }: { value: number; suffix: string; prefix?: string; label: string; start: boolean }) => {
