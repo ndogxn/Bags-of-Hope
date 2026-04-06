@@ -3,7 +3,7 @@ import { MapPin, Mail, Building2 } from "lucide-react";
 
 const cards = [
   { icon: MapPin, title: "Bellaire High School", lines: ["5100 Maple St", "Bellaire, TX 77401"], color: "text-primary" },
-  { icon: Mail, title: "Email Us", lines: ["ndogan4821@gmail.com"], color: "text-sky" },
+  { icon: Mail, title: "Email Us", lines: ["bagsofhope.bhs@gmail.com"], color: "text-sky" },
   { icon: Building2, title: "Texas Medical Center", lines: ["Houston, TX"], color: "text-secondary" },
 ];
 
