@@ -2,7 +2,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Package, Gift, DollarSign, MapPin } from "lucide-react";
 
 const cards = [
-  { num: "01", icon: Package, title: "We Assemble", desc: "Members gather to hand-pack each goodie bag with care, filling them with toys, stuffed animals, and approved snacks.", color: "text-sky", gradient: "from-sky to-secondary" },
+  { num: "01", icon: Package, title: "We Assemble", desc: "Members gather to hand-pack each goodie bag with care, filling them with toys, toiletries, letters, and other hospital-approved goodies.", color: "text-sky", gradient: "from-sky to-secondary" },
   { num: "02", icon: Gift, title: "We Give", desc: "Finished bags are delivered directly to children staying at hospitals in Houston's Texas Medical Center.", color: "text-rose", gradient: "from-rose to-tertiary" },
   { num: "03", icon: DollarSign, title: "We Fundraise", desc: "Through student donations and community support, we fund every bag we create.", color: "text-secondary", gradient: "from-secondary to-sky" },
   { num: "04", icon: MapPin, title: "We Are Local", desc: "Everything happens right here in Bellaire and the greater Houston area — by students, for the community.", color: "text-tertiary", gradient: "from-tertiary to-primary" },
