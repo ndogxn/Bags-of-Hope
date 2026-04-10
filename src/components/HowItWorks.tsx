@@ -3,7 +3,7 @@ import { HandCoins, ShoppingBag, Puzzle, Truck } from "lucide-react";
 
 const steps = [
   { icon: HandCoins, title: "Donations Come In", desc: "Students and community members contribute funds.", color: "text-tertiary", bg: "bg-tertiary/10" },
-  { icon: ShoppingBag, title: "We Shop & Gather", desc: "We purchase toys, snacks, water, and stuffed animals.", color: "text-sky", bg: "bg-sky/10" },
+  { icon: ShoppingBag, title: "We Shop & Gather", desc: "We purchase toys, toiletries, and other hospital-approved items.", color: "text-sky", bg: "bg-sky/10" },
   { icon: Puzzle, title: "Members Assemble", desc: "Club members hand-pack each bag with love.", color: "text-rose", bg: "bg-rose/10" },
   { icon: Truck, title: "Bags Are Delivered", desc: "Goodie bags go to children at TMC hospitals.", color: "text-secondary", bg: "bg-secondary/10" },
 ];
